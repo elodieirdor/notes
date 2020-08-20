@@ -44,7 +44,6 @@ export default {
   methods: {
     onSubmit (evt) {
       evt.preventDefault()
-      alert(JSON.stringify(this.form))
       this.form.id = new Date().getTime()
       const note = Object.assign({}, this.form)
       bus.$emit('created', note)
