@@ -1,13 +1,19 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <Navbar />
+    <b-container fluid="xl" class="main-container">
+      <router-view/>
+    </b-container>
   </div>
 </template>
 
 <script>
+import Navbar from './components/Navbar'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    Navbar
+  }
 }
 </script>
 
@@ -18,6 +24,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+.main-container{
+  margin-top: 20px;
 }
 </style>
