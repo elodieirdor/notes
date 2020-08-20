@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <b-form @submit="onSubmit" @reset="onReset"> -->
     <b-card class="mt-3 add-note-container" >
       <b-form @submit="onSubmit">
       <b-card-text>
@@ -26,47 +25,42 @@
       <b-button type="submit" variant="primary">Submit</b-button>
     </b-form>
     </b-card>
-    <b-card class="mt-3" header="Form Data Result">
-      <pre class="m-0">{{ form }}</pre>
-    </b-card>
+
   </div>
 </template>
 
 <script>
+import {bus} from '../main.js'
 export default {
   data () {
     return {
       form: {
         title: '',
-        text: ''
+        text: '',
+        id: null
       }
     }
   },
   methods: {
     onSubmit (evt) {
       evt.preventDefault()
-      alert(JSON.stringify(this.form))
+      this.form.id = new Date().getTime()
+      const note = Object.assign({}, this.form)
+      bus.$emit('created', note)
+      this.reset()
+    },
+    reset () {
+      // Reset our form values
+      this.form.title = ''
+      this.form.text = ''
+      this.form.id = null
     }
-    // ,
-    // onReset (evt) {
-    //   evt.preventDefault()
-    //   // Reset our form values
-    //   this.form.email = ''
-    //   this.form.name = ''
-    //   this.form.food = null
-    //   this.form.checked = []
-    //   // Trick to reset/clear native browser form validation state
-    //   this.show = false
-    //   this.$nextTick(() => {
-    //     this.show = true
-    //   })
-    // }
   }
 }
 </script>
 <style scoped>
 .add-note-container {
       width: 50%;
-    margin: auto;
+    margin: 20px auto 20px auto;
 }
 </style>
