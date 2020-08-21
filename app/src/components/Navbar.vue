@@ -8,11 +8,10 @@
       <b-collapse id="nav-collapse" is-nav>
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-form>
-            <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
+          <b-nav-form @submit="onSubmit">
+            <b-form-input size="sm" class="mr-sm-2" v-model="form.search" placeholder="Search"></b-form-input>
             <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
           </b-nav-form>
-
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -20,7 +19,21 @@
 </template>
 
 <script>
+import {bus} from './../main'
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+  data () {
+    return {
+      form: {
+        search: ''
+      }
+    }
+  },
+  methods: {
+    onSubmit (evt) {
+      evt.preventDefault()
+      bus.$emit('filtered', this.form.search)
+    }
+  }
 }
 </script>
