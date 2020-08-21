@@ -6,6 +6,7 @@
       type="text"
       placeholder="Title"
       class="mb-2"
+      autocomplete="off"
     >
     </b-form-input>
 
