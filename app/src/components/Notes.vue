@@ -86,6 +86,8 @@ export default {
           this.isLoading = false
         })
         .catch(error => {
+          this.selectedNote = null
+          this.$bvModal.hide('edit-note-modal')
           this.handleApiError(error)
         })
     },
