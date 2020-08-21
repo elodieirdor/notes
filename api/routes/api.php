@@ -8,8 +8,6 @@ use App\Note;
 //     return $request->user();
 // });
 
-
-
 Route::get('notes', 'NoteController@index');
 Route::post('notes', 'NoteController@create');
 Route::put('notes/{note}', 'NoteController@update');
