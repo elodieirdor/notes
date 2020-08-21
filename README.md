@@ -17,9 +17,13 @@ Search
 
 Add authentication
 
+Test the API endpoints
+
 ### APP
 
 Use vuex
+
+Test the app
 
 ## Nice to have features
 
