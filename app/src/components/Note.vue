@@ -3,7 +3,7 @@
     no-body
     v-b-hover="handleHover"
   >
-    <b-card-body>
+    <b-card-body v-on:click="updateNote(id)">
       <b-card-title>{{title}}</b-card-title>
       <b-card-text>{{text}}</b-card-text>
     </b-card-body>
@@ -27,6 +27,9 @@ export default {
     }
   },
   methods: {
+    updateNote (id) {
+      bus.$emit('update', id)
+    },
     deleteNote (id) {
       bus.$emit('deleted', id)
     },
