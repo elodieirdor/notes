@@ -24,7 +24,6 @@ const getNotes = () => {
 
 export default {
   name: 'Notes',
-  editModalVisible: false,
   components: {
     Note,
     NoteForm
