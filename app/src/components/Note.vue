@@ -1,5 +1,4 @@
 <template>
-  <div>
     <b-card
       :title="title"
       tag="article"
@@ -8,7 +7,6 @@
     >
       <b-card-text>{{text }}</b-card-text>
     </b-card>
-  </div>
 </template>
 
 <script>

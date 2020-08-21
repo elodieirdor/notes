@@ -1,9 +1,7 @@
 <template>
 <b-container>
-  <b-card-group deck>
-    <div v-for='note in notes' :key=note.id>
-      <Note :title="note.title" :text="note.text" />
-    </div>
+  <b-card-group columns>
+      <Note v-for='note in filteredNotes' :key=note.id :title="note.title" :text="note.text" />
   </b-card-group>
 </b-container>
 </template>
@@ -25,14 +23,32 @@ export default {
   components: {
     Note
   },
+  computed: {
+    filteredNotes: function () {
+      const filterText = this.filterText
+
+      if (filterText === '') {
+        return this.notes
+      }
+
+      return this.notes.filter(function (note) {
+        return note.title.includes(filterText) || note.text.includes(filterText)
+      })
+    }
+
+  },
   data () {
     return {
+      filterText: '',
       notes: getNotes()
     }
   },
   created () {
     bus.$on('created', (note) => {
       this.notes.push(note)
+    })
+    bus.$on('filtered', (text) => {
+      this.filterText = text
     })
   }
 }
